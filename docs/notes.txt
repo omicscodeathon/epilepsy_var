@@ -1,0 +1,17 @@
+Notes:
+Evaluation of Results/Hypothesis:
+- Go beyond visual comparison with the published results of an existing literature or reproduced paper
+- Figures should have good resolution and labels should be readable
+
+The following are preferred,
+- Balanced dataset
+- If available, different omic data types can be compared (depending on what the project is about)
+- The inclusion/exclusion selection criteria for the sequences that were analyzed.
+
+
+These other possible validation approaches can be done:
+- Crossing different studies in databases that are related to the condition being studied
+
+Use case or Novelty:
+- Highlight the specific use case(s) where this proposed solution is particularly relevant.
+- In your benchmarking, you can see if you can  work with hardware specs that could be available to a typical biologist.
