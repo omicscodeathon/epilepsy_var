@@ -15,7 +15,7 @@ To analyse genetic variation, gene expression and methylation changes in transcr
 ## Team
 Marion Nyaboke - MSc. Bioinformatics
 
-Shamim Osata
+Shamim Osata -MSc. Bioinformatics
 
 Modibo Goita
 
