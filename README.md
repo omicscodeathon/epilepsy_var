@@ -17,6 +17,6 @@ Marion Nyaboke - MSc. Bioinformatics
 
 Shamim Osata -MSc. Bioinformatics
 
-Modibo Goita
+Modibo Goita - MSc. Bioinformatics
 
 Awe Olaitan - African Society for Bioinformatics and Computational Biology, South Africa
