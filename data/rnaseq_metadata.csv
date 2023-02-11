@@ -1,0 +1,37 @@
+﻿Accession,GSM_id,Individual,description,TISSUE,Condition
+SRR9733947,GSM3963731,patient 1,C1,Neocortex,mesial temporal lobe epilepsy
+SRR9733948,GSM3963732,patient 2,H1,Hippocampus,mesial temporal lobe epilepsy
+SRR9733949,GSM3963733,patient 3,C2,Neocortex,mesial temporal lobe epilepsy
+SRR9733950,GSM3963734,patient 4,H2,Hippocampus,mesial temporal lobe epilepsy
+SRR9733951,GSM3963735,patient 5,C3,Neocortex,mesial temporal lobe epilepsy
+SRR9733952,GSM3963736,patient 6,H3,Hippocampus,mesial temporal lobe epilepsy
+SRR9733953,GSM3963737,patient 7,C4,Neocortex,mesial temporal lobe epilepsy
+SRR9733954,GSM3963738,patient 8,H4,Hippocampus,mesial temporal lobe epilepsy
+SRR9733955,GSM3963739,patient 9,C5,Neocortex,mesial temporal lobe epilepsy
+SRR9733956,GSM3963740,patient 10,H5,Hippocampus,mesial temporal lobe epilepsy
+SRR9733957,GSM3963741,patient 11,C6,Neocortex,mesial temporal lobe epilepsy
+SRR9733958,GSM3963742,patient 12,H6,Hippocampus,mesial temporal lobe epilepsy
+SRR9733959,GSM3963743,patient 13,C7,Neocortex,mesial temporal lobe epilepsy
+SRR9733960,GSM3963744,patient 14,H7,Hippocampus,mesial temporal lobe epilepsy
+SRR9733961,GSM3963745,patient 15,C8,Neocortex,mesial temporal lobe epilepsy
+SRR9733962,GSM3963746,patient 16,H8,Hippocampus,mesial temporal lobe epilepsy
+SRR9733963,GSM3963747,patient 17,C9,Neocortex,mesial temporal lobe epilepsy
+SRR9733964,GSM3963748,patient 18,H9,Hippocampus,mesial temporal lobe epilepsy
+SRR9733965,GSM3963749,patient 19,C10,Neocortex,mesial temporal lobe epilepsy
+SRR9733966,GSM3963750,patient 20,H10,Hippocampus,mesial temporal lobe epilepsy
+SRR9733967,GSM3963751,patient 21,C11,Neocortex,mesial temporal lobe epilepsy
+SRR9733968,GSM3963752,patient 22,H11,Hippocampus,mesial temporal lobe epilepsy
+SRR9733969,GSM3963753,patient 23,C12,Neocortex,mesial temporal lobe epilepsy
+SRR9733970,GSM3963754,patient 24,H12,Hippocampus,mesial temporal lobe epilepsy
+SRR9733971,GSM3963755,patient 25,C13,Neocortex,mesial temporal lobe epilepsy
+SRR9733972,GSM3963756,patient 26,H13,Hippocampus,mesial temporal lobe epilepsy
+SRR9733973,GSM3963757,patient 27,C14,Neocortex,mesial temporal lobe epilepsy
+SRR9733974,GSM3963758,patient 28,H14,Hippocampus,mesial temporal lobe epilepsy
+SRR9733975,GSM3963759,patient 29,C15,Neocortex,mesial temporal lobe epilepsy
+SRR9733976,GSM3963760,patient 30,H15,Hippocampus,mesial temporal lobe epilepsy
+SRR9733977,GSM3963761,patient 31,C16,Neocortex,mesial temporal lobe epilepsy
+SRR9733978,GSM3963762,patient 32,H16,Hippocampus,mesial temporal lobe epilepsy
+SRR9733979,GSM3963763,patient 33,C17,Neocortex,mesial temporal lobe epilepsy
+SRR9733980,GSM3963764,patient 34,H17,Hippocampus,mesial temporal lobe epilepsy
+SRR9733981,GSM3963765,control 1,Cntrl1,Neocortex,without epilepsy
+SRR9733982,GSM3963766,control 2,Cntrl2,Neocortex,without epilepsy
