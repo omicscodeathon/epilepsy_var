@@ -10,6 +10,7 @@ To analyse genetic variation, gene expression and methylation changes in transcr
 
 ## Workflow
 ![image](https://user-images.githubusercontent.com/45264074/216883632-a3518e6c-4cb5-48c3-abe4-f4519261b171.png)
+![Workflow](https://user-images.githubusercontent.com/48203926/218250527-848ee311-bfaf-40cc-9c64-61d95c10993e.PNG)
 
 
 ## Team
