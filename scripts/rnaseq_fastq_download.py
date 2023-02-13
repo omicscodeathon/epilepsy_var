@@ -10,7 +10,7 @@ sra_numbers = [
                         "SRR9733977","SRR9733978","SRR9733979","SRR9733980","SRR9733981","SRR9733982"
     ]
 
-# This will download the .sra files to ~/ncbi/public/sra/ (will create directory if not present)
+# This will download the .sra files to separate folders for each sra_id it the current directory
 for sra_id in sra_numbers:
     print ("Currently downloading: " + sra_id)
     prefetch = "prefetch " + sra_id
@@ -20,6 +20,6 @@ for sra_id in sra_numbers:
 # This will extract the .sra files from above into a folder named 'fastq'
 for sra_id in sra_numbers:
     print ("Generating fastq for: " + sra_id)
-    fastq_dump = "fastq-dump --outdir fastq --gzip --skip-technical  --readids --read-filter pass --dumpbase --split-3 --clip ~/ncbi/public/sra/" + sra_id + ".sra"
+    fastq_dump = "fastq-dump --outdir fastq --gzip --skip-technical  --readids --dumpbase --split-3 --clip " + sra_id "/" + sra_id + ".sra"
     print ("The command used was: " + fastq_dump)
     subprocess.call(fastq_dump, shell=True)
