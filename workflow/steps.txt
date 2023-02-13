@@ -1,4 +1,5 @@
 Steps: [Convert the steps into workflow diagram (include tools for each step) and update README.md]
+RNA-seq analysis
 . Pull down RNASeq reads from NCBI (sra-toolkit) 
 . Quality check (fastQC & MultiQC)
 . Trimming and cleaning of fastq files (Trimmomatic)
@@ -11,11 +12,10 @@ Steps: [Convert the steps into workflow diagram (include tools for each step) an
 . Differential gene expression analysis (DSEseq2)
 . Enrichment analysis (GO-seq)
 .
-.
-.
-.
-.
-.
-.
-.
-.
+DNA Methylation analysis
+. Download bisulfite seq (sra-toolkit)
+. Quality control (fastQC)
+. Differential Methylation Analysis (DSS)
+. SNP calling in bisulfite sequences (gemBS)
+. Enrichment Analysis (KOBAS & KEGG)
+
