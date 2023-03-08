@@ -7,6 +7,6 @@ SAMPLES=$(cat ../accessions/Bisulfite-data-accessions.txt)
 
 for SAMPLE in $SAMPLES; do
 
- prefetch ${SAMPLE} --max-size u && fastq-dump --gzip --split-files ${SAMPLE} &&  rm -Rv ${SAMPLE}
+ prefetch ${SAMPLE} --max-size u && fastq-dump --gzip --split-files ${SAMPLE} && rm -Rv ${SAMPLE}
 
 done
