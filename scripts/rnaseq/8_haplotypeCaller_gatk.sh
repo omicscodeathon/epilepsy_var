@@ -19,7 +19,7 @@ SRR9733982"
 #======VAR CALLING=========
 
 for SAMPLE in $SAMPLE_ID; do
-   gatk --java-options -Xmx4g HaplotypeCaller  \
+   gatk --java-options -Xmx30g HaplotypeCaller  \
       -R ${REF_DIR}/GRCh38.fasta \
       -I ${ALGN_DIR}/${SAMPLE}_bqsr.bam \
       --dbsnp ${REF_DIR}/dbsnp138.vcf \
