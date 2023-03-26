@@ -2,10 +2,10 @@
 
 mkdir ~/my_shared_data_folder/epilepsy/rnaseq_results/alignment
 
-REF_DIR="~/my_shared_data_folder/epilepsy/data/rnaseq/ref"
-GENOME_DIR="~/my_shared_data_folder/epilepsy/data/rnaseq/ref/star"
-SAMPLE_DIR="~/my_shared_data_folder/epilepsy/data/rnaseq/fastq"
-ALIGN_DIR="~/my_shared_data_folder/epilepsy/rnaseq_results/bam"
+REF_DIR="/srv/data/my_shared_data_folder/epilepsy/data/rnaseq/ref"
+GENOME_DIR="/srv/data/my_shared_data_folder/epilepsy/data/rnaseq/ref/star"
+SAMPLE_DIR="/srv/data/my_shared_data_folder/epilepsy/data/rnaseq/fastq"
+ALIGN_DIR="/srv/data/my_shared_data_folder/epilepsy/rnaseq_results/bam"
 
 SAMPLE_ID="SRR9733947 SRR9733948 SRR9733949 SRR9733950 SRR9733951 SRR9733952 SRR9733953 
 SRR9733954 SRR9733955 SRR9733956 SRR9733957 SRR9733958 SRR9733959 SRR9733960 SRR9733961 
