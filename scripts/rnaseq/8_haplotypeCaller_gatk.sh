@@ -20,7 +20,8 @@ for SAMPLE in $SAMPLE_ID; do
    gatk --java-options -Xmx4g HaplotypeCaller  \
       -R ${REF_DIR}/GRCh38.fasta \
       -I ${ALGN_DIR}/${SAMPLE}_bqsr.bam \
-      --dbsnp ${REF_DIR}/dbsnp138.vcf
+      --dbsnp ${REF_DIR}/dbsnp138.vcf \
+      --native-pair-hmm-threads 16 \
       -O ${VAR_DIR}/${SAMPLE}.vcf.gz
 
    #rm -r ${ALGN_DIR}/${SAMPLE}_bqsr.bam
