@@ -19,17 +19,35 @@ SRR9733978 SRR9733979 SRR9733980 SRR9733981 SRR9733982"
 #=======READS QUANTIFICATION
 
 # Run fragment count on TotalRNA (pair-end) alignment files
-for SAMPLE in $SAMPLE_ID; do
-    featureCounts \
-        -T 32 \
-        -s 2 \
-        --minOverlap 10 \
-        -B \
-        -C \
-        -Q 30 \
-        -p \
-        -g gene_id \
-        -a ${REF_DIR}/GRCh38.gtf \
-        -o ${COUNT_DIR}/featureCounts_GSE134697.txt \
-        ${ALGN_DIR}/${SAMPLE}_str.bam
-done
+
+#Featurescounts for GSE127871
+
+featureCounts \
+    -T 32 \
+    -s 2 \
+    --minOverlap 10 \
+    -B \
+    -C \
+    -Q 30 \
+    -p \
+    -g gene_id \
+    -a ${REF_DIR}/GRCh38.gtf \
+    -o ${COUNT_DIR}/featureCounts_GSE134697.txt \
+    ${ALGN_DIR}/SRR8*_str_Aligned.sortedByCoord.out.bam
+
+
+#Featurescounts for GSE134697
+
+featureCounts \
+    -T 32 \
+    -s 2 \
+    --minOverlap 10 \
+    -B \
+    -C \
+    -Q 30 \
+    -p \
+    -g gene_id \
+    -a ${REF_DIR}/GRCh38.gtf \
+    -o ${COUNT_DIR}/featureCounts_GSE134697.txt \
+    ${ALGN_DIR}/SRR9*_str_Aligned.sortedByCoord.out.bam
+
