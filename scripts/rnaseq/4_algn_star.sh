@@ -15,9 +15,11 @@ SRR9733978 SRR9733979 SRR9733980 SRR9733981 SRR9733982"
 
 for SAMPLE in $SAMPLE_ID; do
         STAR \
-        --runThreadN 10 \
+        --runThreadN 12 \
         --readFilesIn ${SAMPLE_DIR}/${SAMPLE}_1.fastq ${SAMPLE_DIR}/${SAMPLE}_2.fastq \
         --genomeDir ${GENOME_DIR} \
+        --readFilesCommand zcat \
+        --outSAMattrRGline ID:${SAMPLE} SM:${SAMPLE} PL:ILLUMINA \
         --outSAMtype BAM SortedByCoordinate \
         --outFileNamePrefix ${ALIGN_DIR}/${SAMPLE}
 done
