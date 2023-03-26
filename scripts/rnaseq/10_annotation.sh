@@ -24,8 +24,8 @@ for SAMPLE in $SAMPLE_ID; do
     -buildver hg38 \
     -out ${ANNO_DIR}/${SAMPLE} \
     -remove \
-    -protocol refGene,knownGene,cytoBand,exac03,avsnp150,dbnsfp42a,,gnomad211_exome,clinvar_20221231 \
-    -operation g,g,r,f,f,f,f,f \
+    -protocol refGene,cytoBand,exac03,avsnp150,dbnsfp42a,,gnomad211_exome,clinvar_20221231 \
+    -operation g,r,f,f,f,f,f \
     -nastring . \
     -vcfinput \
     -polish
