@@ -20,7 +20,7 @@ for (FILES in SAMPLI_ID) {
 data = read.delim(FILES, header = T, sep = "\t", quote = NULL)
 
 #Filtering variant that PASS quality check and read deeph
-genePass = filter(data, data$Otherinfo10 == "PASS" & data$Otherinfo9 > 15)
+genePass = filter(data, data$Otherinfo10 == "PASS" & data$Otherinfo3 > 15)
 
 #Will looking only for exonic and Non synonymous variation
 genFun = filter(genePass, genePass$Func.refGene == "exonic" & genePass$ExonicFunc.refGene == "nonsynonymous SNV")
