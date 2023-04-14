@@ -9,8 +9,8 @@ Genetic factors play a significant role in epilepsy with over 500 genes linked t
 To analyse genetic variation, gene expression and methylation changes in transcriptomic and bisulphite whole genome sequences of patients with epilepsy
 
 ## Workflow
-![Workflow](https://user-images.githubusercontent.com/48203926/218250527-848ee311-bfaf-40cc-9c64-61d95c10993e.PNG)
 
+![Untitled Diagram drawio](https://user-images.githubusercontent.com/45264074/231996235-d7d720db-e6f0-4178-bede-0b6752bfb4b0.png)
 
 ## Team
 Marion Nyaboke - MSc. Bioinformatics
