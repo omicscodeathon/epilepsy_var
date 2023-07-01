@@ -1,21 +1,11 @@
 Steps: [Convert the steps into workflow diagram (include tools for each step) and update README.md]
-RNA-seq analysis
-. Pull down RNASeq reads from NCBI (sra-toolkit) 
-. Quality check (fastQC & MultiQC)
-. Trimming and cleaning of fastq files (Trimmomatic)
-. Alignment to human reference genome - hg38 (STAR)
-. Convert SAM files to BAM files (samtools)
-. Sort BAM files (samtools)
-. Variants calling (GATKs)
-. Variant annotation (ANNOVAR)
-. Count reads associated with each gene (FeatureCount)
-. Differential gene expression analysis (DSEseq2)
-. Enrichment analysis (GO-seq)
+. Pull down the reads
 .
-DNA Methylation analysis
-. Download bisulfite seq (sra-toolkit)
-. Quality control (fastQC)
-. Differential Methylation Analysis (DSS)
-. SNP calling in bisulfite sequences (gemBS)
-. Enrichment Analysis (KOBAS & KEGG)
-
+.
+.
+.
+.
+.
+.
+.
+.
