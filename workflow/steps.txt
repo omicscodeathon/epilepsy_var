@@ -1,8 +1,8 @@
 Steps: [Convert the steps into workflow diagram (include tools for each step) and update README.md]
-. Pull down the reads
-.
-.
-.
+. Pull down the reads from SRA Explorer
+. Perform sequence quality control using FASTQC and MULTIQC
+. Trimming of adapters and low quality reads from paired-end reads using (Trimgalore/(trimmomatic))
+. 
 .
 .
 .
