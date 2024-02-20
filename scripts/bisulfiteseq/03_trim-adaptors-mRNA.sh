@@ -12,6 +12,6 @@ SAMPLES="SRR10493735 SRR10493736 SRR10493737 SRR10493738 SRR10493739 SRR10493740
 
 for SAMPLE in $SAMPLES; do
 
-trim_galore --paired ${FASTQ_DIR}/${SAMPLE}_1.fastq.gz ${FASTQ_DIR}/${SAMPLE}_2.fastq.gz
+trim_galore --paired --cores 8 ${FASTQ_DIR}/${SAMPLE}_1.fastq.gz ${FASTQ_DIR}/${SAMPLE}_2.fastq.gz
 
 done
