@@ -2,9 +2,9 @@ Steps: [Convert the steps into workflow diagram (include tools for each step) an
 . Pull down the reads from SRA Explorer
 . Perform sequence quality control with FASTQC and MULTIQC
 . Trimming of adapters and low quality reads from paired-end reads with Trimgalore
-. Coversion of file from fastq to fasta format
 . Preparation of the reference genome (i.e hg38) with Bismark and Bowtie2 pre alignment process
-. Alignment of all dataset in the fasta format to the reference genome with Bismark
-.
-.
+. Alignment of all dataset in the fastq format to the reference genome with Bismark
+. Deduplication step to remove alignments with identical mapping position to avoid technical duplication in the results
+. Methylation Extraction operates on Bismark alignment files and extracts the methylation call for every single C analyzed. --gzip is used to compress the output files in .gz format.
+. Generate report and summary - The command bismark2report will generate a graphical HTML report for each sample (including the M-bias plot), using the reports generated from the previous steps (alignment, de-duplication, methylation extraction)
 .
