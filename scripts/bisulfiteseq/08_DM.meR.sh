@@ -40,7 +40,7 @@ module load homer
 
 call="Rscript \
 --vanilla \
-/share/lasallelab/Ensi/project/dmrichr/DM.main.R \
+/share/lasallelab/George/DM.main.R \
 --genome hg38 \
 --coverage 1 \
 --perGroup '0.1' \
