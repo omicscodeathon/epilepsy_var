@@ -11,8 +11,9 @@ To analyse genetic variation, gene expression and methylation changes in transcr
 ## Workflow
 
 <p align="center">
-<img src="https://github.com/omicscodeathon/epilepsy_var/assets/116915872/ecddfc91-f221-4d84-b326-20099d33ae29" width="800" height="700">
+<img src="https://github.com/omicscodeathon/epilepsy_var/assets/116915872/dd96bd28-5ee8-4364-b6d8-c8a224858cfc" width="800" height="700">
 </p>
+
 
 ## Team
 
