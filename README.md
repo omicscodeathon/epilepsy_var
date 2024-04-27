@@ -1,6 +1,4 @@
-<p align="center">
 # Integrated Analysis of Genetic Variation, Gene Expression and Methylation Changes in Epilepsy
-</p>
 
 ## Table of Contents
 - [Background](#Background)
