@@ -3,13 +3,10 @@
 ## Table of Contents
 - [Background](#Background)
 - [Objectives](#Objectives)
-- [Data](#Data)
 - [Methods](#Methods)
 - [Results](#Results)
-- [Reproducibility](#Reproducibility)
-- [Discussion](#Discussion)
-- [Team](#Team)
 - [Acknowledgment](#Acknowledgment)
+- [Team](#Team)
 - [References](#References)
 
 ## Background
@@ -18,7 +15,8 @@ Epilepsy is a neurological disorder characterized by recurrent seizures caused b
 Genetic factors play a significant role in epilepsy with over 500 genes linked to the disorder. Several studies have identified specific gene mutations associated with different types of epilepsy. Epigenetic changes, such as DNA methylation, have also been found to play a role in epilepsy and several differentially methylated genes have been linked to specific types of epilepsy. Despite these findings, over 30% of epilepsy patients cannot effectively manage their seizures with medication.
 
 ## Objectives
-To analyse genetic variation, gene expression and methylation changes in transcriptomic and bisulphite whole genome sequences of patients with epilepsy
+- To analyse genetic variation and gene expression on temporal lobe epilepsy (TLE) transcriptopmic data
+- To investigate the methylation changes in TLE whole genome bisulphite sequence data
 
 ## Data
 
@@ -36,21 +34,30 @@ Variant calling and analysis of differentially expressed genes (DEGs) were carri
   
 <img src="https://github.com/omicscodeathon/epilepsy_var/assets/116915872/9ae4d3b9-a1e1-4c62-bfc0-c10de063dfca">
 
+
 <img src="https://github.com/omicscodeathon/epilepsy_var/assets/116915872/f34d7175-73c9-41bd-b975-816209f5d232">
+
 
 <img src="https://github.com/omicscodeathon/epilepsy_var/assets/116915872/b792c233-9720-4076-b1b0-b3037849b51a">
 
+
 <img src="https://github.com/omicscodeathon/epilepsy_var/assets/116915872/950e65d9-711c-4c89-a7c9-3f9cbbf410b9">
+
 
 <img src="https://github.com/omicscodeathon/epilepsy_var/assets/116915872/d4397e92-6e5b-46c7-bef6-819164b11182">
 
+
 <img src="https://github.com/omicscodeathon/epilepsy_var/assets/116915872/1b18929d-ed99-4b11-89ad-cb8cfedc5861">
+
 
 <img src="https://github.com/omicscodeathon/epilepsy_var/assets/116915872/bf4d0e56-2d5b-4fce-a25b-84dcece2c532">
 
+
 <img src="https://github.com/omicscodeathon/epilepsy_var/assets/116915872/43ecb76b-e5f6-4531-afe4-736427f767dd">
 
+
 <img src="https://github.com/omicscodeathon/epilepsy_var/assets/116915872/f47865e0-74b1-4f2c-91f0-def94e83b94d">
+
 
 <img src="https://github.com/omicscodeathon/epilepsy_var/assets/116915872/cfb2e920-8e72-42c1-bbe7-19baccf56bcd">
 
