@@ -10,9 +10,10 @@ To analyse genetic variation, gene expression and methylation changes in transcr
 
 ## Workflow
 
-![image](https://user-images.githubusercontent.com/45264074/234816532-079bab9c-9aec-46bb-83cd-34eab3eb49ea.png)
+![image](https://github.com/omicscodeathon/epilepsy_var/assets/116915872/63519884-2875-4e33-8fab-a44fca88f27e)
 
 ## Team
+
 Marion Nyaboke - MSc. Bioinformatics
 
 Shamim Osata -MSc. Bioinformatics
