@@ -20,8 +20,10 @@ Genetic factors play a significant role in epilepsy with over 500 genes linked t
 ## Objectives
 To analyse genetic variation, gene expression and methylation changes in transcriptomic and bisulphite whole genome sequences of patients with epilepsy
 
-## Methods
+## Data
 
+## Methods
+Variant calling and analysis of differentially expressed genes (DEGs) were carried out on two sets of temporal lobe epilepsy (TLE) transcriptomic data from. Bisulfite mapping, methylation calling, and differential methylation (DMR) analysis were also conducted on two sets of TLE whole genome bisulphite sequence (WGBS) data. For RNA-seq variant calling, the Haplotypecaller tools from GATK4 were utilized, and variant annotation was performed using ANNOVAR. Differential expression analysis was executed using DESeq2 in R, with annotation facilitated by the AnnotationDbi and org.Hs.eg.db packages. DMR analysis of bisulfite sequences was accomplished using the Bismark tool. Bisulphite mapping and methylation calling of the TLE WGBS data were carried out using Bismark tool, while DMRichR was used to perform differential methylation analysis.
 
 ## Analysis workflow
 
@@ -30,6 +32,46 @@ To analyse genetic variation, gene expression and methylation changes in transcr
 </p>
 
 ## Results
+
+![volcanoplot](https://github.com/omicscodeathon/epilepsy_var/assets/116915872/9ae4d3b9-a1e1-4c62-bfc0-c10de063dfca)
+
+
+![goDOWN](https://github.com/omicscodeathon/epilepsy_var/assets/116915872/f34d7175-73c9-41bd-b975-816209f5d232)
+
+
+![goUP](https://github.com/omicscodeathon/epilepsy_var/assets/116915872/b792c233-9720-4076-b1b0-b3037849b51a)
+
+
+![principal component analysis_single CpGs](https://github.com/omicscodeathon/epilepsy_var/assets/116915872/950e65d9-711c-4c89-a7c9-3f9cbbf410b9)
+
+
+![Single CpG Density plot](https://github.com/omicscodeathon/epilepsy_var/assets/116915872/d4397e92-6e5b-46c7-bef6-819164b11182)
+
+
+![heatmap](https://github.com/omicscodeathon/epilepsy_var/assets/116915872/1b18929d-ed99-4b11-89ad-cb8cfedc5861)
+
+
+![Rectangular-Manhattan p value](https://github.com/omicscodeathon/epilepsy_var/assets/116915872/bf4d0e56-2d5b-4fce-a25b-84dcece2c532)
+
+
+![GOfuncR_plot](https://github.com/omicscodeathon/epilepsy_var/assets/116915872/43ecb76b-e5f6-4531-afe4-736427f767dd)
+
+
+![enrichr_plot](https://github.com/omicscodeathon/epilepsy_var/assets/116915872/f47865e0-74b1-4f2c-91f0-def94e83b94d)
+
+
+![GREAT_plot](https://github.com/omicscodeathon/epilepsy_var/assets/116915872/cfb2e920-8e72-42c1-bbe7-19baccf56bcd)
+
+
+![GOfuncR_plot](https://github.com/omicscodeathon/epilepsy_var/assets/116915872/9cdd3724-4bac-4601-b066-4110cbfbfaa8)
+
+
+![enrichr_plot](https://github.com/omicscodeathon/epilepsy_var/assets/116915872/90acb2ac-a2a9-45ce-9dd6-8eedf8488ae6)
+
+
+![GREAT_plot](https://github.com/omicscodeathon/epilepsy_var/assets/116915872/d563fc2c-5c59-4729-9087-f4c1c2708636)
+
+
 
 ## References
 
