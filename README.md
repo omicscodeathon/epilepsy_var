@@ -32,7 +32,7 @@ Variant calling and analysis of differentially expressed genes (DEGs) were carri
 </p>
 
 ## Results
-
+<p align="center">
 ![volcanoplot](https://github.com/omicscodeathon/epilepsy_var/assets/116915872/9ae4d3b9-a1e1-4c62-bfc0-c10de063dfca)
 
 
@@ -70,7 +70,7 @@ Variant calling and analysis of differentially expressed genes (DEGs) were carri
 
 
 ![GREAT_plot](https://github.com/omicscodeathon/epilepsy_var/assets/116915872/d563fc2c-5c59-4729-9087-f4c1c2708636)
-
+</p>
 
 
 ## References
