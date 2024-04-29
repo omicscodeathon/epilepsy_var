@@ -61,4 +61,10 @@ Shamim Osata -MSc. Bioinformatics
 
 Modibo K. Goita - MSc. Bioinformatics
 
+George E. Kuodza - MD
+
+Jonathan Kalami
+
+Ifeoluwa H. Ojelabi - MD
+
 Awe Olaitan - African Society for Bioinformatics and Computational Biology, South Africa
