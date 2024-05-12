@@ -63,7 +63,7 @@ Modibo K. Goita - MSc. Bioinformatics
 
 George E. Kuodza - MD
 
-Jonathan Kalami
+Jonathan Kalami - BSc. Biochemistry
 
 Ifeoluwa H. Ojelabi - MD
 
