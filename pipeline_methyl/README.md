@@ -3,7 +3,7 @@
 This repository contains the reproducibility steps for the differential methylation analysis of WGBS data of TLE patients with(3) and without(3) hippocampal sclerosis. The pipeline downloads WGBS 
 data from the sra explorer, performs quality checks using fastqc. The downloaded dataset is then trimmed using trimgalore and aligned to the bismark prepared reference human genome hg38 followed 
 by methylation calling with bismark. 
-tool. the reads and and trimming of adapter sequences and poor quality reads.
+tool.
  
 ## SETTING UP THE ENVIRONMENT
 
