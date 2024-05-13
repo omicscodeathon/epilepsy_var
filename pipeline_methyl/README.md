@@ -35,7 +35,6 @@ mamba install -y -c conda-forge -c bioconda \
     trim-galore=0.6.7 \
     bedtools=2.30.0 \
     samtools=1.15.1 \
-    metilene=0.2.8
 ```
 
 ## DATA DOWNLOADING AND PREPROCESSING
