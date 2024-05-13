@@ -40,10 +40,8 @@ mamba install -y -c conda-forge -c bioconda \
 
 ## DATA DOWNLOADING AND PREPROCESSING
 
-. Download Reference genome
+- Download Reference genome
 
 ```
 wget https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz
-```  
-
-. 
+```   
