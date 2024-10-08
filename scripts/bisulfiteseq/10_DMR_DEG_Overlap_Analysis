@@ -1,0 +1,370 @@
+# Install and load necessary libraries
+if (!requireNamespace("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+BiocManager::install("biomaRt")
+BiocManager::install("GenomicRanges")
+BiocManager::install("ChAMP")
+install.packages("VennDiagram")
+
+
+library(openxlsx)
+library(readxl)
+library(dplyr)
+library(GenomicRanges)
+library(biomaRt)
+library(readr)
+library(VennDiagram)
+
+#Comparison of all three. Result not significant
+
+# Read DMRs and DEGs
+dmrs <- read_excel("data/bisulfiteseq/DMRichR/Trial_1/DMRs/DMRs_annotated.xlsx")
+degs <- read_csv("data/bisulfiteseq/DMRichR/Trial_1/DMRs/DGE_results.csv")
+zhang_et_al <- read_excel("data/bisulfiteseq/DMRichR/Trial_1/DMRs/Table S2. The reported epileptic phenotypes with corresponding number of mutations in each gene.xlsx")
+
+#find out colnames.
+
+
+# Subset the first column
+subset_zhang_et_al <- zhang_et_al[[1]]
+
+# Get the unique values from the first column
+zhang_et_al_final_subset <- unique(subset_zhang_et_al)
+
+# Convert the unique names to a dataframe
+zhang_et_al_final <- as.data.frame(zhang_et_al_final_subset)
+
+# Rename the column in zhang_et_al_final
+colnames(zhang_et_al_final) <- "geneSymbol"
+
+
+
+# Assuming zhang_et_al_final, degs, and dmrs have already been read and processed
+
+# Extract gene names from the datasets
+zhang_genes <- zhang_et_al_final$geneSymbol
+degs_genes <- degs$Gene
+dmrs_genes <- dmrs$geneSymbol
+
+# Find overlaps
+overlap_genes_degs_dmrs <- intersect(degs_genes, dmrs_genes)
+overlap_genes_degs_zhang <- intersect(degs_genes, zhang_genes)
+overlap_genes_dmrs_zhang <- intersect(dmrs_genes, zhang_genes)
+
+# Get genes that intersect across all three datasets
+overlap_genes_all_three <- intersect(overlap_genes_degs_dmrs, overlap_genes_degs_zhang)
+overlap_genes_all_three <- intersect(overlap_genes_all_three, overlap_genes_dmrs_zhang)
+
+# Statistical test for significance of overlap
+total_genes <- 20000
+
+# Create a contingency table and perform Fisher's test for each pair and all three
+contingency_tables <- list(
+  "DEGs_DMRs" = matrix(c(
+    length(overlap_genes_degs_dmrs),
+    length(setdiff(degs_genes, dmrs_genes)),
+    length(setdiff(dmrs_genes, degs_genes)),
+    total_genes - length(union(degs_genes, dmrs_genes))
+  ), nrow = 2),
+  
+  "DEGs_Zhang" = matrix(c(
+    length(overlap_genes_degs_zhang),
+    length(setdiff(degs_genes, zhang_genes)),
+    length(setdiff(zhang_genes, degs_genes)),
+    total_genes - length(union(degs_genes, zhang_genes))
+  ), nrow = 2),
+  
+  "DMRs_Zhang" = matrix(c(
+    length(overlap_genes_dmrs_zhang),
+    length(setdiff(dmrs_genes, zhang_genes)),
+    length(setdiff(zhang_genes, dmrs_genes)),
+    total_genes - length(union(dmrs_genes, zhang_genes))
+  ), nrow = 2),
+  
+  "All_Three" = matrix(c(
+    length(overlap_genes_all_three),
+    length(setdiff(overlap_genes_degs_dmrs, overlap_genes_all_three)),
+    length(setdiff(overlap_genes_degs_zhang, overlap_genes_all_three)),
+    length(setdiff(overlap_genes_dmrs_zhang, overlap_genes_all_three))
+  ), nrow = 2)
+)
+
+fisher_results <- lapply(contingency_tables, fisher.test)
+
+# Create data frames for the results
+overlap_genes_dfs <- list(
+  "DEGs_DMRs" = data.frame(Intersecting_Genes = overlap_genes_degs_dmrs),
+  "DEGs_Zhang" = data.frame(Intersecting_Genes = overlap_genes_degs_zhang),
+  "DMRs_Zhang" = data.frame(Intersecting_Genes = overlap_genes_dmrs_zhang),
+  "All_Three" = data.frame(Intersecting_Genes = overlap_genes_all_three)
+)
+
+fisher_results_dfs <- lapply(fisher_results, function(result) {
+  data.frame(
+    p_value = result$p.value,
+    odds_ratio = ifelse(!is.null(result$estimate), result$estimate, NA),
+    conf_int_lower = ifelse(!is.null(result$conf.int), result$conf.int[1], NA),
+    conf_int_upper = ifelse(!is.null(result$conf.int), result$conf.int[2], NA)
+  )
+})
+
+# Apply this function to the p-value before writing to Excel
+fisher_results_dfs <- lapply(fisher_results, function(result) {
+  data.frame(
+    p_value = format_p_value(result$p.value),
+    odds_ratio = ifelse(!is.null(result$estimate), result$estimate, NA),
+    conf_int_lower = ifelse(!is.null(result$conf.int), result$conf.int[1], NA),
+    conf_int_upper = ifelse(!is.null(result$conf.int), result$conf.int[2], NA)
+  )
+})
+
+# Write the results to an Excel file
+output_file <- "gene_overlap_analysis_with_zhang.xlsx"
+wb <- createWorkbook()
+addWorksheet(wb, "Intersecting Genes DEGs-DMRs")
+addWorksheet(wb, "Intersecting Genes DEGs-Zhang")
+addWorksheet(wb, "Intersecting Genes DMRs-Zhang")
+addWorksheet(wb, "Intersecting Genes All Three")
+addWorksheet(wb, "Fisher Test Results DEGs-DMRs")
+addWorksheet(wb, "Fisher Test Results DEGs-Zhang")
+addWorksheet(wb, "Fisher Test Results DMRs-Zhang")
+addWorksheet(wb, "Fisher Test Results All Three")
+
+writeData(wb, sheet = "Intersecting Genes DEGs-DMRs", x = overlap_genes_dfs$DEGs_DMRs)
+writeData(wb, sheet = "Intersecting Genes DEGs-Zhang", x = overlap_genes_dfs$DEGs_Zhang)
+writeData(wb, sheet = "Intersecting Genes DMRs-Zhang", x = overlap_genes_dfs$DMRs_Zhang)
+writeData(wb, sheet = "Intersecting Genes All Three", x = overlap_genes_dfs$All_Three)
+writeData(wb, sheet = "Fisher Test Results DEGs-DMRs", x = fisher_results_dfs$DEGs_DMRs)
+writeData(wb, sheet = "Fisher Test Results DEGs-Zhang", x = fisher_results_dfs$DEGs_Zhang)
+writeData(wb, sheet = "Fisher Test Results DMRs-Zhang", x = fisher_results_dfs$DMRs_Zhang)
+writeData(wb, sheet = "Fisher Test Results All Three", x = fisher_results_dfs$All_Three)
+
+saveWorkbook(wb, output_file, overwrite = TRUE)
+
+print(paste("Results have been written to", output_file))
+
+# Load necessary libraries
+library(readxl)
+library(openxlsx)
+library(VennDiagram)
+
+# Assuming zhang_et_al_final, degs, and dmrs have already been read and processed
+
+# Extract gene names from the datasets
+zhang_genes <- zhang_et_al_final$geneSymbol
+degs_genes <- degs$Gene
+dmrs_genes <- dmrs$geneSymbol
+
+# Find overlaps
+overlap_genes_degs_dmrs <- intersect(degs_genes, dmrs_genes)
+overlap_genes_degs_zhang <- intersect(degs_genes, zhang_genes)
+overlap_genes_dmrs_zhang <- intersect(dmrs_genes, zhang_genes)
+
+# Get genes that intersect across all three datasets
+overlap_genes_all_three <- intersect(overlap_genes_degs_dmrs, overlap_genes_degs_zhang)
+overlap_genes_all_three <- intersect(overlap_genes_all_three, overlap_genes_dmrs_zhang)
+
+# Prepare the initial sets of genes for Venn diagram
+initial_genes_degs <- unique(degs_genes)
+initial_genes_dmrs <- unique(dmrs_genes)
+initial_genes_zhang <- unique(zhang_genes)
+
+# Create a list of gene sets for the Venn diagram
+gene_sets <- list(
+  DEGs = initial_genes_degs,
+  DMRs = initial_genes_dmrs,
+  Genes_Zhang = initial_genes_zhang
+)
+
+# Create and save the Venn diagram
+venn_plot <- venn.diagram(
+  x = gene_sets,
+  category.names = c("DEGs", "Genes DMR", "Genes Zhang"),
+  fill = c("red", "green", "blue"),
+  alpha = 0.5,
+  cat.col = c("red", "green", "blue"),
+  cat.cex = 1.5,
+  cat.fontface = "bold",
+  cat.pos = c(-30, 30, 180), # Adjust positions if necessary
+  cat.dist = c(0.05, 0.05, 0.05), # Adjust distances if necessary
+  filename = "gene_overlap_venn_diagram.png",
+  output = TRUE
+)
+
+print("Venn diagram saved as 'gene_overlap_venn_diagram.png'")
+
+# Ensure you have the correct working directory or provide a full path to save the file correctly
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+###Promoter region analysis
+#correlation plot
+
+library(ggplot2)
+library(openxlsx)
+library(readxl)
+library(dplyr)
+library(GenomicRanges)
+library(biomaRt)
+library(readr)
+library(ggrepel)
+
+# Read DMRs and DEGs
+dmrs <- read_excel("data/bisulfiteseq/DMRichR/Trial_1/DMRs/DMRs_annotated.xlsx")
+degs <- read_csv("data/bisulfiteseq/DMRichR/Trial_1/DMRs/DGE_results.csv")
+
+# Rename the gene symbol column in DMRs
+dmrs <- dmrs %>% rename(hgnc_symbol = geneSymbol)
+
+# Filter DMRs to include only promoter regions
+promoter_dmrs <- dmrs %>% filter(grepl("Promoter", annotation))
+
+# Use the correct column names for methylation levels and expression levels
+methylation_column <- "betaCoefficient"
+expression_column <- "log2FoldChange"
+
+# Map DEGs gene names to genomic coordinates using biomaRt
+ensembl <- useMart("ensembl", dataset = "hsapiens_gene_ensembl")
+genes <- degs$Gene
+gene_coords <- getBM(
+  attributes = c('hgnc_symbol', 'chromosome_name', 'start_position', 'end_position'),
+  filters = 'hgnc_symbol',
+  values = genes,
+  mart = ensembl
+)
+
+# Ensure chromosome names are consistent (remove 'chr' prefix from DMRs if needed)
+promoter_dmrs$chr <- sub("^chr", "", promoter_dmrs$chr)
+
+# Convert gene coordinates to GenomicRanges
+deg_gr <- GRanges(
+  seqnames = gene_coords$chromosome_name,
+  ranges = IRanges(start = gene_coords$start_position, end = gene_coords$end_position),
+  hgnc_symbol = gene_coords$hgnc_symbol
+)
+
+# Convert promoter DMRs to GenomicRanges
+promoter_dmr_gr <- GRanges(
+  seqnames = promoter_dmrs$chr,
+  ranges = IRanges(start = promoter_dmrs$start, end = promoter_dmrs$end),
+  hgnc_symbol = promoter_dmrs$hgnc_symbol
+)
+
+# Find overlaps
+overlaps <- findOverlaps(deg_gr, promoter_dmr_gr)
+overlap_genes <- unique(promoter_dmr_gr$hgnc_symbol[subjectHits(overlaps)])
+
+# Extract methylation levels and expression levels for overlapping genes
+methylation_levels <- promoter_dmrs[[methylation_column]][match(overlap_genes, promoter_dmrs$hgnc_symbol)]
+expression_levels <- degs[[expression_column]][match(overlap_genes, degs$Gene)]
+
+# Ensure 'Gene' is included in the data frame
+correlation_data <- data.frame(
+  Methylation = methylation_levels,
+  Expression = expression_levels,
+  Gene = overlap_genes
+)
+
+# Perform correlation analysis
+correlation <- cor.test(correlation_data$Methylation, correlation_data$Expression, method = "pearson")
+
+# Print correlation result
+print(correlation)
+
+
+# Create a scatter plot with a regression line and gene names
+correlation_plot <- ggplot(correlation_data, aes(x = Methylation, y = Expression, label = Gene)) +
+  geom_point(color = "blue", alpha = 0.6) +
+  geom_smooth(method = "lm", se = TRUE, color = "red", linetype = "dashed") +
+  geom_text_repel(size = 3, max.overlaps = 10) + # Adjust max.overlaps to limit the number of labels
+  labs(
+    title = "Correlation between Methylation Levels in Promoter region and Gene Expression",
+    subtitle = paste("Pearson correlation: ", round(correlation$estimate, 2), "p-value:", round(correlation$p.value, 2)),
+    x = "Methylation Levels (betaCoefficient)",
+    y = "Expression Levels (log2FoldChange)"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 16, face = "bold", color = "black"),
+    plot.subtitle = element_text(size = 14, face = "italic", color = "black"),
+    axis.title.x = element_text(size = 14, face = "bold", color = "black"),
+    axis.title.y = element_text(size = 14, face = "bold", color = "black"),
+    panel.grid.major = element_line(color = "lightgrey", linewidth = 0.5),
+    panel.grid.minor = element_line(color = "lightgrey", linewidth = 0.25)
+  )
+
+# Print the plot
+print(correlation_plot)
+
+# Save the plot to a file
+ggsave("correlation_plot.png", plot = correlation_plot, width = 8, height = 6)
+
+print("Correlation plot saved as 'correlation_plot.png'")
+
+
+
+
+
+# Create a scatter plot with a regression line and gene names
+correlation_plot <- ggplot(correlation_data, aes(x = Methylation, y = Expression, label = overlap_genes)) +
+  geom_point(color = "blue", alpha = 0.6) +
+  geom_smooth(method = "lm", se = TRUE, color = "red", linetype = "dashed") +
+  geom_text(vjust = -0.5, size = 2, angle = 45) + # Adjust vjust and size as needed
+  labs(
+    title = "Correlation between Methylation Levels and Gene Expression",
+    subtitle = paste("Pearson correlation: ", round(correlation$estimate, 2), "p-value:", round(correlation$p.value, 2)),
+    x = "Methylation Levels (betaCoefficient)",
+    y = "Expression Levels (log2FoldChange)"
+  ) +
+  theme_minimal()
+
+# Print the plot
+print(correlation_plot)
+
+# Save the plot to a file
+ggsave("correlation_plot.png", plot = correlation_plot, width = 8, height = 6)
+
+print("Correlation plot saved as 'correlation_plot.png'")
+
+
+
+
+
+
+
+
+# Create a scatter plot with a regression line
+correlation_plot <- ggplot(correlation_data, aes(x = Methylation, y = Expression)) +
+  geom_point(color = "blue", alpha = 0.6) +
+  geom_smooth(method = "lm", se = TRUE, color = "red", linetype = "dashed") +
+  labs(
+    title = "Correlation between Methylation Levels and Gene Expression",
+    subtitle = paste("Pearson correlation: ", round(correlation$estimate, 2),  "p-value: 0.43"),
+    x = "Methylation Levels (betaCoefficient)",
+    y = "Expression Levels (log2FoldChange)"
+  ) +
+  theme_minimal()
+
+# Print the plot
+print(correlation_plot)
+
+# Save the plot to a file
+ggsave("correlation_plot.png", plot = correlation_plot, width = 8, height = 6)
+
+print("Correlation plot saved as 'correlation_plot.png'")
+
