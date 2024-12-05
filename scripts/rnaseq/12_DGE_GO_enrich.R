@@ -234,21 +234,45 @@ BiocManager::install("clusterProfiler")
 library(goseq)
 library(clusterProfiler)
 
+# GO for upregulated DEGs
+gene_to_test_Up = resOrdered[resOrdered$log2FoldChange > 0.5,]
+gene_to_test_Up = gene_to_test_Up$Gene
 
-gene_to_test = resOrdered[resOrdered$log2FoldChange > 0.5,]
-gene_to_test = gene_to_test$symbol
+go_resuts_PB_Up = enrichGO(gene = gene_to_test_Up, OrgDb = "org.Hs.eg.db", keyType = "SYMBOL",
+                        ont = "BP")
 
-go_resuts_PB = enrichGO(gene = gene_to_test, OrgDb = "org.Hs.eg.db", keyType = "SYMBOL",
-                     ont = "BP")
+go_plot_Up <- barplot(go_resuts_PB_Up, showCategory = 10) + 
+  theme_minimal() + # Add a minimal theme (optional)
+  theme(
+    text = element_text(size = 14, color = "black"), # Increase overall text size
+    axis.title = element_text(size = 16, color = "black"), # Increase axis title text size
+    axis.text = element_text(size = 20, color = "black") # Increase axis labels text size
+  )
 
-go_plot = plot(barplot(go_resuts_PB, showCategory = 20))
+ggsave("goUp.svg", dpi = 600, units = c("in"), width = 10, height = 12, plot = go_plot_Up)
 
-go_plot
+go_df_Up <- as.data.frame(go_resuts_PB_Up) 
 
-png("go_enrich.png", res = 250, width = 1200, height = 1800)
-print(go_plot)
-dev.off()
+write.csv(go_df_Up, file = "GOUp_results.csv")
 
-go_df <- as.data.frame(go_resuts_PB) 
 
-write.csv(go_df, file = "GO_results.csv")
+# GO for downregulated DEGs
+gene_to_test_down = resOrdered[resOrdered$log2FoldChange > 0.5,]
+gene_to_test_down = gene_to_test_down$Gene
+
+go_resuts_PB_down = enrichGO(gene = gene_to_test_down, OrgDb = "org.Hs.eg.db", keyType = "SYMBOL",
+                        ont = "BP")
+
+go_plot_down <- barplot(go_resuts_PB_down, showCategory = 10) + 
+  theme_minimal() + # Add a minimal theme (optional)
+  theme(
+    text = element_text(size = 14, color = "black"), # Increase overall text size
+    axis.title = element_text(size = 16, color = "black"), # Increase axis title text size
+    axis.text = element_text(size = 20, color = "black") # Increase axis labels text size
+  )
+
+ggsave("goDown.svg", dpi = 600, units = c("in"), width = 10, height = 12, plot = go_plot_down)
+
+go_df_down <- as.data.frame(go_resuts_PB_down) 
+
+write.csv(go_df_down, file = "GODown_results.csv")
